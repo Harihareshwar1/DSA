@@ -10,6 +10,7 @@ void delete_end();
 void delete_pos();
 void search();
 int getlength();
+
 struct node
 {
 	int data;
@@ -18,6 +19,17 @@ struct node
 typedef struct node Node;
 Node *head = NULL;
 Node *last;
+void reverse(){
+    Node * current = head;
+    Node *prev=0,*nextNode=current;
+    while(nextNode!=0){
+        nextNode = nextNode->next;
+        current->next = prev;
+        prev = current;
+        current = nextNode;
+    }
+    head = prev;
+}
 int main()
 {
 	int choice;
@@ -32,8 +44,8 @@ int main()
 	    printf("5. Delete Node at beginning\n");
 	    printf("6. Delete Node at end\n");
 	    printf("7. Delete Node at position\n");
-	    printf("8. ** To exit **");
-
+        printf("8. reverse \n");
+	    printf("9. ** To exit **\n");
 		printf("\n Enter your choice: ");
 		scanf("%d",&choice);
 		switch(choice)
@@ -54,7 +66,8 @@ int main()
 					break;
 			case 7: delete_pos();
 					break;
-			case 8: exit(0);
+            case 8:reverse();break;
+			case 9: exit(0);
 			default:printf("\n Wrong Choice");
                     break;
 		}
