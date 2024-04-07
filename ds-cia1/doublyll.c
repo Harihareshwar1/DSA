@@ -19,6 +19,21 @@ struct node
 typedef struct node Node;
 Node *head = NULL;
 Node *last;
+
+void reverse(){
+    Node * curr = head;
+    Node* temp = NULL;
+    while(curr){
+        temp = curr->next;
+        curr->next = curr->prev;
+        curr->prev = temp;
+        curr = curr->prev;
+
+    }
+    curr = head;
+    head = last;
+    last = curr;
+}
 int main()
 {
 	int choice;
@@ -33,7 +48,8 @@ int main()
 	    printf("5. Delete Node at beginning\n");
 	    printf("6. Delete Node at end\n");
 	    printf("7. Delete Node at position\n");
-	    printf("8. ** To exit **");
+        printf("8 Reverse \n");
+	    printf("9. ** To exit **");
 
 		printf("\n Enter your choice: ");
 		scanf("%d",&choice);
@@ -55,7 +71,8 @@ int main()
 					break;
 			case 7: delete_pos();
 					break;
-			case 8: exit(0);
+			case 8:reverse();break;
+            case 9: exit(0);
 			default:printf("\n Wrong Choice");
                     break;
 		}
